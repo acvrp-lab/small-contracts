@@ -1,4 +1,5 @@
 pragma solidity ^0.6.0;
+//SPDX-License-Identifier: UNLICENSED
 
 abstract contract Rescuable {
     
@@ -24,13 +25,13 @@ abstract contract Rescuable {
         _rescueToken(token, to, extraBalanceOf(token));
     }
     
-    function rescueEther(address to, uint256 value) public onlyRescuer {
+    function rescueEther(address payable to, uint256 value) public onlyRescuer {
         if (value <= extraBalanceOf(etherAddr)) {
-            payable(to).transfer(value);
+            to.transfer(value);
         }
     }
     
-    function rescueEther(address to) public onlyRescuer {
-        payable(to).transfer(extraBalanceOf(etherAddr));
+    function rescueEther(address payable to) public onlyRescuer {
+        to.transfer(extraBalanceOf(etherAddr));
     }
 }
