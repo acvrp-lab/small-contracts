@@ -6,6 +6,7 @@ why not use a transfer function with callback
 pseudo code:
 contract ERC20-Kill-Allowance {
 	function transfer(dapp, value, calldata) {
+		require(dapp != this);
 		transfer(dapp, value);
 		dapp.call(calldata);
 	}
