@@ -1,0 +1,17 @@
+spec:
+good 2017 iMac, mojave
+westen digital my book 8T
+
+turbo-geth
+5/14 execution stage, block/sec is under 100
+after an interruption to restart the computer, it drops to 1 block/sec
+is it because it loses previous caches?
+or that i didnt use ssd external drive?
+anyway, i had to stop it and use geth
+
+$ geth --datadir /Volumes/k/e  --syncmode full
+Fatal: Error starting protocol stack: listen unix /Volumes/k/e/geth.ipc: bind: invalid argument
+google says socket path need be short, so i changed to above, but still not working
+fortunately, i found geth has another option --ipcpath, relative to datadir (explicit paths escape it)
+$ geth --datadir /Volumes/k/e  --syncmode full --ipcpath /Users/***/Library/Ethereum
+hooray! it works. hope it can finish successfully.
